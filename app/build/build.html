@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  <!-- header -->
+  <div app-header></div>
+  
+  <!-- main content -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-3 col-sm-2 col-xs-2">
+        </div>
+        <div class="col-md-6 col-sm-8 col-xs-8">
+          <h1 class="text-center">Edit Content</h1>
+          <br />
+          <form ng-submit="buildCtrl.submitEle()">
+            <div class="form-group">
+              <label for="sel1">Update or Create</label>
+              <select ng-model="buildCtrl.editMode" class="form-control" id="sel1">
+                <option></option>
+                <option value="update">Update an existing element</option>
+                <option value="build">Create a new element</option>
+              </select>
+            </div>
+            <div ng-show="buildCtrl.editMode === 'build'" class="form-group">
+              <label for="sel1">Select Element Type</label>
+              <select ng-model="buildCtrl.build.type" class="form-control" id="sel1">
+                <option></option>
+                <option>text</option>
+                <option>image</option>
+                <option>code</option>
+                <option>code-editor</option>
+                <option>question</option>
+              </select>
+            </div>
+            <div ng-show="buildCtrl.editMode === 'update'" class="form-group">
+              <input ng-model="buildCtrl.eltoModify" type="text" class="form-control" placeholder="Enter element sequence #">
+            </div>
+            <div class="form-group" ng-show="buildCtrl.build">
+              <label>Sequence #</label>
+              <input type="number" class="form-control" placeholder="sequence#" ng-model="buildCtrl.build.sequence">
+            </div>
+            <div class="form-group" ng-show="buildCtrl.build">
+            <label>Step</label>
+              <input type="text" class="form-control" placeholder="step" ng-model="buildCtrl.build.step">
+            </div>
+            <div class="form-group" ng-show="buildCtrl.build">
+            <label>Course</label>
+              <input type="text" class="form-control" placeholder="course" ng-model="buildCtrl.build.course">
+            </div>
+            <div class="form-group" ng-show="buildCtrl.build" >
+              <label>Shuffle</label>
+              <input type="text" class="form-control" placeholder="shuffle" ng-model="buildCtrl.build.shuffle">
+            </div>
+            <div class="form-group" ng-show="buildCtrl.build.type === 'image'">
+              <label>URL</label>
+              <input type="text" class="form-control" placeholder="url" ng-model="buildCtrl.build.url">
+            </div>
+            <div class="form-group" ng-show="(buildCtrl.build.type === 'text' || buildCtrl.build.type === 'code')">
+              <label>Content</label>
+              <textarea rows="10" class="form-control" placeholder="content" ng-model="buildCtrl.build.content"></textarea>
+            </div>
+            <div class="form-group" ng-show="(buildCtrl.build.type === 'code-editor' || buildCtrl.build.type === 'question')">
+              <label>Prompt</label>
+              <textarea class="form-control" placeholder="prompt" rows="4" ng-model="buildCtrl.build.prompt"></textarea>
+            </div>
+            <div class="form-group" ng-show="(buildCtrl.build.type === 'code-editor')">
+              <label>Answer for code challenge</label>
+              <textarea class="form-control" placeholder="answer" rows="10" ng-model="buildCtrl.build.answer"></textarea>
+            </div>
+            <div class="form-group" ng-show="buildCtrl.build.type === 'code-editor'">
+              <label>Test Cases</label>
+              <textarea class="form-control" placeholder="test cases" rows="10" ng-model="buildCtrl.build.testCase"></textarea>
+            </div>
+            <div class="form-group" ng-show="buildCtrl.build.type === 'question'">
+              <label>Possible Responses for Question</label>
+              <input type="text" class="form-control" placeholder="response choice a" ng-model="buildCtrl.build.answer.a">
+              <input type="text" class="form-control" placeholder="response choice b" ng-model="buildCtrl.build.answer.b">
+              <input type="text" class="form-control" placeholder="response choice c" ng-model="buildCtrl.build.answer.c">
+              <input type="text" class="form-control" placeholder="response choice d" ng-model="buildCtrl.build.answer.d">
+              <label>Correct Response for Question (a, b, c, or d)</label>
+              <input type="text" class="form-control" placeholder="enter letter of correct choice" ng-model="buildCtrl.build.answer.correct">
+            </div>
+            <input ng-show="buildCtrl.build" class="btn btn-primary form-control" type="submit">
+          </form> 
+          <!-- build type: {{buildCtrl.build}} -->
+
+        </div>
+        <div class="col-md-3 col-sm-2 col-xs-2">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

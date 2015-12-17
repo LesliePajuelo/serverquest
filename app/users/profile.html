@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <!-- header -->
+  <div app-header></div>
+  
+  <!-- main content -->
+  <div class="page-wrapper">
+    <div class="page-header profileHeader">
+      <h1>Your Profile</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-7">
+        <img class="profilePageImage" src="{{profileCtrl.profile.profileImageURL}}">
+        <p ng-hide="profileCtrl.pwdUser">Name: {{profileCtrl.profile.displayName}}</p>
+        <p ng-show="profileCtrl.pwdUser">Email Address: {{profileCtrl.profile.emailAddress}}</p>
+        <div ng-show="profileCtrl.isAdmin()" class="checkbox">
+          <label><input ng-click="profileCtrl.changeBuildMode();" ng-model="profileCtrl.buildMode" type="checkbox" value="" ng-checked="profileCtrl.buildMode">Enable Build Mode</label>
+        </div>
+        <form ng-submit="profileCtrl.resetEle();">
+          <br />
+          <input ng-show="profileCtrl.profile.password" type="submit" class="btn btn-default inline" value="change password ">
+        </form>
+          <br />
+        <form ng-submit="profileCtrl.changePwdIfMatch();">
+          <div class="input-group">
+            <input ng-show="profileCtrl.resetPwdToggle" required type="password" class="form-control pwdResetInputbox" placeholder="current password" ng-model="profileCtrl.profile.oldPwd">
+            <input ng-show="profileCtrl.resetPwdToggle" required type="password" class="form-control pwdResetInputbox" placeholder="new password" ng-model="profileCtrl.profile.newPwd">
+            <input ng-show="profileCtrl.resetPwdToggle" required type="password" class="form-control pwdResetInputbox" placeholder="confirm the password" ng-model="profileCtrl.profile.newPwdConfirm">
+            <input ng-show="profileCtrl.resetPwdToggle" type="submit" class="btn btn-default pwdResetInputbox" value="change now!">
+            <p ng-show="profileCtrl.passwordNotMatchError">The passwords does not match. Please try again.</p>
+            <p ng-show="profileCtrl.passwordReset">Your password has been successfully changed.</p>
+            <p ng-show="profileCtrl.oldNewSame">The new password should not be the same as the old one.</p>
+          </div>
+        </form>
+        <p>{{profileCtrl.error.message}}</p>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>

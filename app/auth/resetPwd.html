@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <!-- header -->
+  <div app-header></div>
+  
+  <!-- main content -->
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="row">
+        <div class="col-md-4 col-sm-2">
+        </div>
+        
+        <div class="col-md-4 col-sm-8">
+          <br />
+          <br />
+          <p class="text-center">Put your email address and click on submit to receive a temporary password.</p>
+          <br />
+
+          <form ng-submit="authCtrl.resetPwd()">
+            <div class="form-group">
+              <input type="email" class="form-control" required placeholder="email address" ng-model="authCtrl.user.email">
+            </div>
+            
+            <input type="submit" class="btn btn-lg btn-primary btn-block" value="submit">
+          </form> 
+
+        </div>
+        <div class="col-md-4 col-sm-2">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

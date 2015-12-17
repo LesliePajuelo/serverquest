@@ -1,0 +1,83 @@
+<div app-header></div>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- Shuffle Title -->
+    <h3> {{ missionCtrl.title }} </h3>
+
+    <!-- ng repeat -->
+    <div class="col-md-12" ng-repeat="element in missionCtrl.elements" ng-if="(element.sequence<=currentSequence)">
+    
+      <!-- Switch to check type and display accordingly -->
+      <div ng-switch on="element.type">
+        <p class="missionsequence" ng-show="missionCtrl.isAdmin() && missionCtrl.isBuildMode()">{{element.sequence}}</p>
+        <div ng-switch-when="text" class="element-text">
+          <h3> {{ element.title }} </h3>
+
+
+          <div ng-bind-html="element.content"></div>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
+        </div>
+
+        <div ng-switch-when="image" class="element-images">
+          <img style="width: 500px; height: 300px; display: block" ng-src=" {{element.url}} " />
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
+        </div>
+
+        <div ng-switch-when="video" class="element-video">
+          <p> {{ element.mediaUrl }} (will be iFrame) </p>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
+        </div>
+
+        <div ng-switch-when="code" class="element-code">
+          <pre> {{ element.content }} </pre>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
+        </div>
+
+        <div ng-switch-when="question" class="element-question">
+
+
+          <div>
+            <form name="form" class="css-form" novalidate>
+              <p> {{ element.prompt }} </p>
+              Answer:
+              <br />
+              <input type="radio" ng-model="response" value="a" />{{element.answer.a}}
+              <br />
+              <input type="radio" ng-model="response" value="b" />{{element.answer.b}}
+              <br />
+              <input type="radio" ng-model="response" value="c" ng-show="element.answer.c" />{{element.answer.c}}
+              <br />
+              <input type="radio" ng-model="response" value="d" ng-show="element.answer.d" />{{element.answer.d}}
+              <br />
+            </form>
+            <button ng-show="element.answer.correct === response" class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Great Job - Continue</button>
+            <code ng-show="response && element.answer.correct !== response">Try Again!</code>
+          </div>
+
+
+        </div>
+
+        <div ng-switch-when="code-editor" class="element-code-editor">
+          {{missionCtrl.initEditor(element.prompt)}}
+          <div id="code-editor"></div>
+          <div id="result" ng-show="missionCtrl.codeResult">
+          </div>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.reset(element.prompt)">reset</button>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.run(element.testCase)">run</button>
+          <br />
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
+        </div>
+
+        <div ng-switch-when="list" class="element-list">
+          <ul>{{ element.content }}</ul>
+            <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
+        </div>
+
+      </div>
+    <!-- END ng-repeat -->
+    </div>
+    <button class="btn btn-default btn-large" ui-sref="mission({ courseName: missionCtrl.nextShuffle })" ng-click="missionCtrl.saveElement( missionCtrl.sequence )">Next Lesson</button>
+  </div>
+</div>

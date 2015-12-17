@@ -1,0 +1,3 @@
+var arr = [1,3,4];
+arr = Array.prototype.slice.call(1,arr)
+console.log(arr)

@@ -1,0 +1,33 @@
+<style type="text/css" media="screen">
+  #code-editor { 
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 300px;
+  }
+  #result {
+    background-color: #aaa;
+    position: relative;
+    height: 200px;
+  }
+</style>
+
+<div class="container-fluid">
+  
+  <!-- header -->
+  <div app-header></div>
+
+  <div id="code-editor">
+
+  </div>
+
+  <div id="result">
+    <p>{{aceCtrl.result}}</p>
+  </div>
+
+  <button class="btn btn-default btn-large" ng-click="aceCtrl.getValue()">get value</button>
+  <button ng-hide="aceCtrl.hasUndo" class="btn btn-default btn-large" ng-click="aceCtrl.reset()">reset</button>
+  <button class="btn btn-default btn-large" ng-click="aceCtrl.run()">run</button>
+
+</div>

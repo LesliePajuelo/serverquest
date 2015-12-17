@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <!-- header -->
+  <div app-header></div>
+  
+  <!-- main content -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <h1 class="text-center">
+          Welcome<span>, {{ landingCtrl.profile.displayName || landingCtrl.defaultName }}</span>
+        </h1>
+        <h1 class="text-center">
+          Your current lesson is
+        </h1>
+        <h4 class="text-center">
+          cool neural network lesson #1
+        </h4> 
+        <button ui-sref="lesson" type="button" class="btn btn-default btn-block">
+          Continue
+        </button>
+        <h4 class="text-center">
+          More cool lessons
+        </h4> 
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+    <div class="row">
+    <!-- TODO: Change to card style and remove btn -->
+      <div class="col-md-4" ui-sref="mission({ trackName: 'NeuralNetwork', stepName: 'beginner', courseName: 'preliminaries', currentShuffle: '10' })">
+        <p>
+          Learn about perceptrons.
+        </p>
+        <p>
+          <a class="btn" href="#">Go!</a>
+        </p>
+      </div>
+      <!-- TODO: change missionName to next two missions -->
+
+      <div class="col-md-4" ui-sref="mission({ trackName: 'Track', stepName: 'step1', courseName: 'course1' })">
+
+        <p>
+          Learn about feed forward networks.
+        </p>
+        <p>
+          <a class="btn" href="#">Go!</a>
+        </p>
+      </div>
+      <!-- TODO: change missionName to next two missions -->
+      <div class="col-md-4" ui-sref="mission({ trackName: 'Track', stepName: 'Step', courseName: 'Course', currentShuffle: '10', shuffleName: 'Shuffle' })">
+        <p>
+          Learn about convolutional neural networks.
+        </p>
+        <p>
+          <a class="btn" href="#">Go!</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+</div>

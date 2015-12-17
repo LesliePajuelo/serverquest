@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <!-- header -->
+  <div app-header></div>
+
+  <!-- main content -->
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center">Lesson</h2>
+      <h3 class="text-center">{{accordionCtrl.track.title}}</h3>
+      <br/>
+    </div>
+    <div class="col-md-1 col-sm-1"></div>
+    <div class="col-md-10 col-sm-10">
+
+    <div ng-show="accordionCtrl.isNotString(step);" class="accordionContainer" ng-repeat="step in accordionCtrl.track | filter='step'">
+      <div class="accordionStepBox">
+        <h4 class="accordionStepTitle">Step {{$index+1}}: {{step.title}}</h4>
+        <span>Summary: {{step.summary}}</span>
+      </div>
+      <div class="accordionCoursesBox">
+        <div class="accordionCoursesText">Available Courses</div>
+
+        <!-- accordion for suffles -->
+        <uib-accordion close-others="accordionCtrl.oneAtATime">
+          <!-- only give accordion to object vals -->
+          <div class="accordion" ng-show="accordionCtrl.isNotString(course);" ng-repeat="(key2, course) in step">
+            <uib-accordion-group heading="{{course.title}}">
+              <div ng-repeat="(key3, suffle) in course | orderBy:'suffle.sequence'">
+                <div ng-show="accordionCtrl.isNotString(suffle);" class="accordionSuffleBox">
+                  {{$index+1}}. {{suffle.title}} 
+                </div>
+              </div>
+              <br/>
+
+              <button ui-sref="mission({ trackName: 'Track', stepName: 'step1', courseName: 'course1' })" class="btn btn-default accordionbutton">Start</button>
+
+            </uib-accordion-group>
+          </div>
+        </uib-accordion>
+      </div>
+    </div>
+
+    <div class="col-md-1 col-sm-1"></div>
+  </div>
+</div>
+

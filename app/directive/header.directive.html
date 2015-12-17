@@ -1,0 +1,64 @@
+<div class="row" ng-hide="isUserSignedIn()">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <nav class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+        </button> 
+        <a class="navbar-brand" ui-sref="login">NeuralQuest</a>
+      </div>
+      <div class="collapse navbar-collapse bs-navbar-collapse" role="navigation" id="main-nav">
+        <ul class="nav navbar-nav navbar-right scroll-nav">
+          <li ng-show="isAdmin()">
+            <a ui-sref="build" class="buildbutton">Build </a>
+          </li>
+          <li class="mainpagemenu">
+            <a ui-sref="login" ng-show="getLoginToggle()" ng-click="loginToggle()">Log In</a>
+            <a ui-sref="signup" ng-hide="getLoginToggle()" ng-click="loginToggle()">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<div class="row" ng-show="isUserSignedIn()">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <nav class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-signedIn">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+        </button> 
+        <a class="navbar-brand" ui-sref="accordion">NeuralQuest</a>
+      </div>
+      <div class="collapse navbar-collapse bs-navbar-collapse" role="navigation" id="main-nav-signedIn">
+        <ul class="nav navbar-nav navbar-right scroll-nav">
+          <li ng-show="isAdmin()">
+            <a ui-sref="build" class="buildbutton">Build</a>
+          </li>
+          <li>
+            <img class="profileImage" src="{{signInUser.profileImgaeURL}}" alt="{{signInUser.displayName}}">
+            <div class="btn-group profileName" uib-dropdown>
+              <a href="#" aria-labelledby="split-button" uib-dropdown-toggle>{{signInUser.displayName}}</a>
+              <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+                <li role="menuitem"><a href="#" ng-click="goProfilePage();">Profile</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#" ng-click="logout();">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+
+
+
