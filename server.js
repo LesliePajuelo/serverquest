@@ -3,16 +3,15 @@ var app      = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-require('./routes.js')(app)
+var routes = require('./routes.js');
 
-app.use(express.static(__dirname + '/app/**/**'));
-app.use(express.static(__dirname + '/bower_components/jquery/*'));
-console.log(__dirname + '/bower_components')
+app.use(express.static(process.cwd() + '/dist/*'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
-app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(bodyParser.json());
 app.use(methodOverride());
 
+routes(app);
 
 app.listen(8080);
 console.log("App listening on port 8080");
